@@ -1,0 +1,115 @@
+.agenda-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.25rem;
+  background: var(--pastel-bg);
+  border-bottom: 1px solid var(--pastel-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+}
+
+.agenda-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.agenda-header__logo {
+  font-size: 1.5rem;
+  color: #b8a9c9;
+}
+
+.agenda-header__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3d3a36;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.agenda-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.agenda-header__btn {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--pastel-border);
+  background: #faf8f5;
+  color: #3d3a36;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s, transform 0.08s;
+}
+
+.agenda-header__btn:hover {
+  background: #f5f2ee;
+  border-color: #b8a9c9;
+}
+
+.agenda-header__btn:active {
+  transform: translateY(1px);
+}
+
+.agenda-header__btn.today {
+  min-width: 3rem;
+}
+
+.agenda-header__range {
+  margin-left: 0.5rem;
+  font-size: 0.95rem;
+  color: #7a756e;
+  min-width: 140px;
+}
+
+.agenda-header__views {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.agenda-header__view {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--pastel-border);
+  background: #faf8f5;
+  color: #7a756e;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.agenda-header__view:hover {
+  color: #3d3a36;
+  background: #f5f2ee;
+}
+
+.agenda-header__view.active {
+  background: #e5dfed;
+  border-color: #b8a9c9;
+  color: #3d3a36;
+}
+
+.agenda-header__add {
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #b8a9c9, #b8c9e0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.2s;
+}
+
+.agenda-header__add:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.98) saturate(1.05);
+}

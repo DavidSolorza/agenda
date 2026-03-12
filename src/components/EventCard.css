@@ -1,0 +1,46 @@
+.event-card {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  min-height: 28px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--event-color);
+  color: #3d3a36;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  filter: saturate(1.03);
+}
+
+.event-card__time {
+  font-size: 0.7rem;
+  opacity: 0.9;
+  margin-bottom: 1px;
+}
+
+.event-card__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-card__category {
+  font-size: 0.65rem;
+  opacity: 0.85;
+  margin-top: auto;
+}

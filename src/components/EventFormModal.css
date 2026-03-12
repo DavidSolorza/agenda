@@ -1,0 +1,220 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 500px at 20% 20%, rgba(184, 201, 224, 0.25), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(900px 500px at 80% 10%, rgba(197, 184, 217, 0.25), rgba(0, 0, 0, 0) 55%),
+    rgba(61, 58, 54, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--pastel-surface);
+  border-radius: 18px;
+  border: 1px solid var(--pastel-border);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.16);
+  width: 90%;
+  max-width: 460px;
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--pastel-border);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #3d3a36;
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f5f2ee;
+  color: #7a756e;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+  background: #e8e4de;
+  color: #3d3a36;
+}
+
+.modal-form {
+  padding: 1.25rem;
+}
+
+.form-error {
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid #e8b8c5;
+  background: #faf0f2;
+  color: #8b3d4c;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #3d3a36;
+}
+
+.modal-form input,
+.modal-form textarea,
+.modal-form select {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--pastel-border);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #3d3a36;
+  background: linear-gradient(180deg, #ffffff, #faf8f5);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.06s, background 0.2s;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus,
+.modal-form select:focus {
+  outline: none;
+  border-color: var(--pastel-accent);
+  box-shadow: 0 0 0 3px rgba(184, 169, 201, 0.25);
+  background: #ffffff;
+}
+
+.modal-form input[type='datetime-local'] {
+  height: 44px;
+  letter-spacing: -0.01em;
+}
+
+.modal-form input:hover,
+.modal-form textarea:hover,
+.modal-form select:hover {
+  border-color: rgba(184, 169, 201, 0.9);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.checkbox-row {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.6rem !important;
+  margin-top: -0.25rem;
+}
+
+.checkbox-row input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--pastel-accent);
+  transform: translateY(1px);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--pastel-border);
+}
+
+.modal-actions__spacer {
+  flex: 1;
+}
+
+.btn-danger {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e8b8c5;
+  background: #faf0f2;
+  color: #a85a6a;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: auto;
+  transition: background 0.2s;
+}
+
+.btn-danger:hover {
+  background: #e8b8c5;
+  color: #fff;
+}
+
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--pastel-border);
+  background: linear-gradient(180deg, #ffffff, #faf8f5);
+  color: #3d3a36;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.08s;
+}
+
+.btn-secondary:hover {
+  background: #f5f2ee;
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: linear-gradient(135deg, var(--pastel-accent), #b8c9e0);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.08s, filter 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.98) saturate(1.05);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}

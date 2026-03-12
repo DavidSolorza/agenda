@@ -1,0 +1,123 @@
+.week-grid {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  grid-template-rows: auto 1fr;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--pastel-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.week-grid__corner {
+  background: #faf8f5;
+  border-right: 1px solid var(--pastel-border);
+  border-bottom: 1px solid var(--pastel-border);
+}
+
+.week-grid__days {
+  display: grid;
+  grid-template-columns: repeat(var(--days-count, 7), 1fr);
+  background: #faf8f5;
+  border-bottom: 1px solid var(--pastel-border);
+}
+
+.week-grid__day-header {
+  padding: 0.5rem;
+  text-align: center;
+  border-right: 1px solid var(--pastel-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  user-select: none;
+}
+
+.week-grid__day-header:last-child {
+  border-right: none;
+}
+
+.week-grid__day-header.today {
+  background: #e5dfed;
+  color: #3d3a36;
+  font-weight: 600;
+}
+
+.week-grid__day-name {
+  font-size: 0.75rem;
+  color: #7a756e;
+}
+
+.week-grid__day-header.today .week-grid__day-name {
+  color: #5a5560;
+}
+
+.week-grid__day-num {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3d3a36;
+}
+
+.week-grid__month {
+  font-size: 0.7rem;
+  color: #7a756e;
+}
+
+.week-grid__body {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  flex: 1;
+  min-height: 400px;
+  overflow: auto;
+  background:
+    linear-gradient(to bottom, rgba(250, 248, 245, 0.55), rgba(255, 255, 255, 0) 140px),
+    #fff;
+}
+
+.week-grid__hours {
+  display: flex;
+  flex-direction: column;
+  background: #faf8f5;
+  border-right: 1px solid var(--pastel-border);
+}
+
+.week-grid__hour-label {
+  height: 48px;
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
+  color: #7a756e;
+  text-align: right;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--pastel-border);
+  user-select: none;
+}
+
+.week-grid__columns {
+  display: grid;
+  grid-template-columns: repeat(var(--days-count, 7), 1fr);
+  position: relative;
+}
+
+.week-grid__column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--pastel-border);
+}
+
+.week-grid__column:last-child {
+  border-right: none;
+}
+
+.week-grid__slot {
+  height: 48px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--pastel-border);
+  transition: background 0.15s;
+}
+
+.week-grid__slot:hover {
+  background: rgba(184, 169, 201, 0.14);
+}
