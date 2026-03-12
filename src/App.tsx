@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react'
 import type { ViewMode } from '@/types'
 import type { CreateEventInput, UpdateEventInput } from '@/types'
-import { startOfWeek, addDays, toDateKey } from '@/utils/dateUtils'
+import { startOfWeek, toDateKey } from '@/utils/dateUtils'
 import { Header } from '@/components/Header'
 import { MonthGrid } from '@/components/MonthGrid'
 import { EventFormModal } from '@/components/EventFormModal'
@@ -9,26 +9,6 @@ import { EventsList } from '@/components/EventsList'
 import { useAgendaEvents } from '@/hooks/useAgendaEvents'
 import { pastel } from '@/theme/colors'
 import './App.css'
-
-function formatWeekLabel(weekStart: Date): string {
-  const end = addDays(weekStart, 6)
-  const a = weekStart.getDate()
-  const b = end.getDate()
-  const monthA = weekStart.toLocaleDateString('es-ES', { month: 'short' })
-  const monthB = end.toLocaleDateString('es-ES', { month: 'short' })
-  const year = weekStart.getFullYear()
-  if (monthA === monthB) return `${a} – ${b} ${monthA} ${year}`
-  return `${a} ${monthA} – ${b} ${monthB} ${year}`
-}
-
-function formatDayLabel(date: string): string {
-  return new Date(date + 'T12:00:00').toLocaleDateString('es-ES', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-}
 
 function formatMonthLabel(year: number, month: number): string {
   const d = new Date(year, month, 1)
@@ -77,12 +57,6 @@ export default function App() {
     setNewEventSlot({ date: focusedDate, hour: 9 })
     setModalOpen(true)
   }, [focusedDate])
-
-  const handleSlotClick = useCallback((date: string, hour: number) => {
-    setEditingEvent(null)
-    setNewEventSlot({ date, hour })
-    setModalOpen(true)
-  }, [])
 
   const handleEventClick = useCallback(
     (event: import('@/types').EventEntity) => {
