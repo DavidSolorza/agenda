@@ -3,10 +3,11 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  padding: 0.75rem 1.25rem;
-  background: var(--pastel-bg);
+  padding: 0.9rem 1.35rem;
+  background:
+    linear-gradient(120deg, rgba(255, 214, 234, 0.96), rgba(255, 244, 249, 0.96));
   border-bottom: 1px solid var(--pastel-border);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 34px rgba(242, 143, 183, 0.18);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -21,13 +22,13 @@
 
 .agenda-header__logo {
   font-size: 1.5rem;
-  color: #b8a9c9;
+  color: #f28fb7;
 }
 
 .agenda-header__title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #3d3a36;
+  color: #3d2836;
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -41,8 +42,8 @@
 .agenda-header__btn {
   padding: 0.45rem 0.7rem;
   border: 1px solid var(--pastel-border);
-  background: #faf8f5;
-  color: #3d3a36;
+  background: rgba(255, 244, 249, 0.9);
+  color: #3d2836;
   border-radius: 10px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -50,8 +51,8 @@
 }
 
 .agenda-header__btn:hover {
-  background: #f5f2ee;
-  border-color: #b8a9c9;
+  background: #ffe7f3;
+  border-color: #f28fb7;
 }
 
 .agenda-header__btn:active {
@@ -65,7 +66,7 @@
 .agenda-header__range {
   margin-left: 0.5rem;
   font-size: 0.95rem;
-  color: #7a756e;
+  color: #a17694;
   min-width: 140px;
 }
 
@@ -77,8 +78,8 @@
 .agenda-header__view {
   padding: 0.4rem 0.75rem;
   border: 1px solid var(--pastel-border);
-  background: #faf8f5;
-  color: #7a756e;
+  background: rgba(255, 244, 249, 0.9);
+  color: #a17694;
   border-radius: 10px;
   cursor: pointer;
   font-size: 0.85rem;
@@ -86,20 +87,20 @@
 }
 
 .agenda-header__view:hover {
-  color: #3d3a36;
-  background: #f5f2ee;
+  color: #3d2836;
+  background: #ffe7f3;
 }
 
 .agenda-header__view.active {
-  background: #e5dfed;
-  border-color: #b8a9c9;
-  color: #3d3a36;
+  background: #ffd6ea;
+  border-color: #f28fb7;
+  color: #3d2836;
 }
 
 .agenda-header__add {
   margin-left: auto;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #b8a9c9, #b8c9e0);
+  background: linear-gradient(135deg, #f28fb7, #f5a8ff);
   color: #fff;
   border: none;
   border-radius: 10px;

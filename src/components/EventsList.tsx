@@ -50,6 +50,7 @@ export function EventsList({
               {e.allDay ? <div className="events-list__badge subtle">Todo el día</div> : null}
             </div>
             <div className="events-list__meta">{formatWhen(e)}</div>
+            {e.description ? <div className="events-list__description">{e.description}</div> : null}
           </button>
         ))}
       </div>

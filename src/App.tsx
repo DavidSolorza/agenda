@@ -3,7 +3,6 @@ import type { ViewMode } from '@/types'
 import type { CreateEventInput, UpdateEventInput } from '@/types'
 import { startOfWeek, addDays, toDateKey } from '@/utils/dateUtils'
 import { Header } from '@/components/Header'
-import { WeekGrid } from '@/components/WeekGrid'
 import { MonthGrid } from '@/components/MonthGrid'
 import { EventFormModal } from '@/components/EventFormModal'
 import { EventsList } from '@/components/EventsList'
@@ -37,7 +36,7 @@ function formatMonthLabel(year: number, month: number): string {
 }
 
 export default function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>('semana')
+  const [viewMode, setViewMode] = useState<ViewMode>('mes')
   const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date()))
   const [focusedDate, setFocusedDate] = useState(() => toDateKey(new Date()))
   const [modalOpen, setModalOpen] = useState(false)
@@ -46,41 +45,21 @@ export default function App() {
 
   const range = useMemo(() => {
     if (viewMode === 'eventos') return null
-    if (viewMode === 'mes') {
-      const d = new Date(weekStart)
-      const start = new Date(d.getFullYear(), d.getMonth(), 1)
-      const end = new Date(d.getFullYear(), d.getMonth() + 1, 0, 23, 59, 59)
-      return { start: start.toISOString(), end: end.toISOString() }
-    }
-    const start = viewMode === 'dia' ? new Date(focusedDate + 'T00:00:00') : weekStart
-    const days = viewMode === 'dia' ? 1 : 7
-    const end = addDays(start, days)
-    end.setHours(23, 59, 59, 999)
-    return {
-      start: start.toISOString(),
-      end: end.toISOString(),
-    }
+    const d = new Date(weekStart)
+    const start = new Date(d.getFullYear(), d.getMonth(), 1)
+    const end = new Date(d.getFullYear(), d.getMonth() + 1, 0, 23, 59, 59)
+    return { start: start.toISOString(), end: end.toISOString() }
   }, [viewMode, weekStart, focusedDate])
 
   const { events, create, update, remove, loading, error } = useAgendaEvents(range)
 
   const handlePrev = useCallback(() => {
-    if (viewMode === 'mes') {
-      setWeekStart((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1))
-    } else {
-      setWeekStart((d) => addDays(d, -7))
-      setFocusedDate((d) => toDateKey(addDays(new Date(d + 'T12:00:00'), -7)))
-    }
-  }, [viewMode])
+    setWeekStart((d) => new Date(d.getFullYear(), d.getMonth() - 1, 1))
+  }, [])
 
   const handleNext = useCallback(() => {
-    if (viewMode === 'mes') {
-      setWeekStart((d) => new Date(d.getFullYear(), d.getMonth() + 1, 1))
-    } else {
-      setWeekStart((d) => addDays(d, 7))
-      setFocusedDate((d) => toDateKey(addDays(new Date(d + 'T12:00:00'), 7)))
-    }
-  }, [viewMode])
+    setWeekStart((d) => new Date(d.getFullYear(), d.getMonth() + 1, 1))
+  }, [])
 
   const handleToday = useCallback(() => {
     const today = new Date()
@@ -90,8 +69,6 @@ export default function App() {
 
   const headerLabel = useMemo(() => {
     if (viewMode === 'eventos') return 'Todos los eventos'
-    if (viewMode === 'semana') return formatWeekLabel(weekStart)
-    if (viewMode === 'dia') return formatDayLabel(focusedDate)
     return formatMonthLabel(weekStart.getFullYear(), weekStart.getMonth())
   }, [viewMode, weekStart, focusedDate])
 
@@ -138,14 +115,25 @@ export default function App() {
     [remove]
   )
 
-  const handleDayClickFromMonth = useCallback((date: string) => {
-    setFocusedDate(date)
-    setViewMode('dia')
-    setWeekStart(startOfWeek(new Date(date + 'T12:00:00')))
-  }, [])
+  const handleDayClickFromMonth = useCallback(
+    (date: string) => {
+      const dayStart = `${date}T00:00:00`
+      const dayEnd = `${date}T23:59:59`
+      const dayEvents = events
+        .filter((e) => e.start < dayEnd && e.end > dayStart)
+        .sort((a, b) => a.start.localeCompare(b.start))
 
-  const weekStartForGrid = viewMode === 'dia' ? new Date(focusedDate + 'T00:00:00') : weekStart
-  const daysCount = viewMode === 'dia' ? 1 : 7
+      if (dayEvents.length >= 1) {
+        handleEventClick(dayEvents[0])
+        return
+      }
+
+      setFocusedDate(date)
+      setViewMode('mes')
+      setWeekStart(startOfWeek(new Date(date + 'T12:00:00')))
+    },
+    [events, handleEventClick]
+  )
 
   return (
     <div className="app" style={{ ['--pastel-bg' as string]: pastel.background }}>
@@ -171,20 +159,12 @@ export default function App() {
         ) : null}
         {viewMode === 'eventos' ? (
           <EventsList onEventClick={handleEventClick} />
-        ) : viewMode === 'mes' ? (
+        ) : (
           <MonthGrid
             year={weekStart.getFullYear()}
             month={weekStart.getMonth()}
             events={events}
             onDayClick={handleDayClickFromMonth}
-          />
-        ) : (
-          <WeekGrid
-            weekStart={weekStartForGrid}
-            daysCount={daysCount}
-            events={events}
-            onEventClick={handleEventClick}
-            onSlotClick={handleSlotClick}
           />
         )}
       </main>

@@ -52,17 +52,22 @@ export function WeekGrid({ weekStart, daysCount = 7, events, onEventClick, onSlo
           ))}
         </div>
         <div className="week-grid__columns">
-          {days.map((d) => (
-            <div key={d.date} className="week-grid__column">
-              {hours.map(({ hour }) => (
-                <div
-                  key={hour}
-                  className="week-grid__slot"
-                  onClick={() => onSlotClick(d.date, hour)}
-                  role="gridcell"
-                />
-              ))}
-              {eventsForDay(d.date).map((e) => (
+          {days.map((d) => {
+            const dayEvents = eventsForDay(d.date)
+            return (
+              <div key={d.date} className="week-grid__column">
+                {hours.map(({ hour }) => (
+                  <div
+                    key={hour}
+                    className="week-grid__slot"
+                    onClick={() => onSlotClick(d.date, hour)}
+                    role="gridcell"
+                  />
+                ))}
+                {dayEvents.length === 0 ? (
+                  <div className="week-grid__empty-label">Sin eventos</div>
+                ) : null}
+                {dayEvents.map((e) => (
                   <EventCard
                     key={e.id}
                     event={e}
@@ -70,8 +75,9 @@ export function WeekGrid({ weekStart, daysCount = 7, events, onEventClick, onSlo
                     onClick={() => onEventClick(e)}
                   />
                 ))}
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

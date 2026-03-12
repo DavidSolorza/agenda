@@ -3,7 +3,7 @@
  * SRP: solo responsabilidad de tipos de calendario.
  */
 
-export type ViewMode = 'semana' | 'dia' | 'mes' | 'eventos'
+export type ViewMode = 'mes' | 'eventos'
 
 export interface DaySlot {
   date: string

@@ -28,7 +28,7 @@ export function Header({
         <h1 className="agenda-header__title">Nuestros Planes</h1>
       </div>
       <div className="agenda-header__nav">
-        {viewMode !== 'eventos' ? (
+        {viewMode === 'mes' ? (
           <>
             <button type="button" className="agenda-header__btn" onClick={onPrev} aria-label="Anterior">
               ‹
@@ -46,14 +46,14 @@ export function Header({
         )}
       </div>
       <div className="agenda-header__views">
-        {(['semana', 'dia', 'mes', 'eventos'] as ViewMode[]).map((mode) => (
+        {(['mes', 'eventos'] as ViewMode[]).map((mode) => (
           <button
             key={mode}
             type="button"
             className={`agenda-header__view ${viewMode === mode ? 'active' : ''}`}
             onClick={() => onViewModeChange(mode)}
           >
-            {mode === 'semana' ? 'Semana' : mode === 'dia' ? 'Día' : mode === 'mes' ? 'Mes' : 'Eventos'}
+            {mode === 'mes' ? 'Mes' : 'Eventos'}
           </button>
         ))}
       </div>

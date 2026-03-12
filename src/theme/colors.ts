@@ -3,25 +3,27 @@
  */
 
 export const pastel = {
-  background: '#faf8f5',
+  // Fondo general con dominante rosa pastel
+  background: '#fff4f9',
   surface: '#ffffff',
-  surfaceHover: '#f5f2ee',
-  border: '#e8e4de',
-  text: '#3d3a36',
-  textMuted: '#7a756e',
-  accent: '#b8a9c9',
-  accentLight: '#e5dfed',
-  lavender: '#c5b8d9',
-  mint: '#b8d4c8',
-  peach: '#e8c9b8',
-  sky: '#b8c9e0',
-  honey: '#e8dcb8',
-  coral: '#e8b8c5',
+  surfaceHover: '#ffe7f3',
+  border: '#f4cfe0',
+  text: '#3d2836',
+  textMuted: '#a17694',
+  // Acentos en gama rosa-lila
+  accent: '#f28fb7',
+  accentLight: '#ffd6ea',
+  lavender: '#e3b5ff',
+  mint: '#cde8de',
+  peach: '#ffc7a6',
+  sky: '#f5a8ff',
+  honey: '#ffe5af',
+  coral: '#ff9fb6',
 } as const
 
 export const categoryColors: Record<string, string> = {
-  trabajo: pastel.sky,
-  personal: pastel.lavender,
+  trabajo: pastel.coral,
+  personal: pastel.accent,
   salud: pastel.mint,
   ocio: pastel.peach,
   otro: pastel.honey,

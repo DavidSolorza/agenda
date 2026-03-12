@@ -86,6 +86,13 @@
   color: #7a756e;
 }
 
+.events-list__description {
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: #3d2836;
+  opacity: 0.9;
+}
+
 .events-list__badge {
   font-size: 0.72rem;
   padding: 0.12rem 0.4rem;
